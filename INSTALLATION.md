@@ -82,6 +82,81 @@ TURN_USERNAME=your-username
 TURN_CREDENTIAL=your-credential
 ```
 
+## Self-Hosting Options
+
+For better control, privacy, and compliance, you can self-host VDO.Ninja and/or run your own TURN server:
+
+### Option A: Use Free Services (Default)
+- **VDO.Ninja**: Uses the free public instance at https://vdo.ninja
+- **STUN/TURN**: Uses Google's public STUN server
+- **Cost**: $0/month
+- **Connection Rate**: ~85-92% (STUN only)
+
+### Option B: Self-Host VDO.Ninja Only
+- **VDO.Ninja**: Your own Docker container
+- **STUN/TURN**: Public STUN server
+- **Cost**: ~$10-20/month (small VPS)
+- **Connection Rate**: ~85-92%
+- **See**: [VDO.Ninja Docker Guide](./docs/VDO_NINJA_DOCKER.md)
+
+### Option C: Self-Host TURN Server Only
+- **VDO.Ninja**: Uses public instance
+- **TURN**: Your own Coturn server
+- **Cost**: ~$10-30/month (VPS)
+- **Connection Rate**: ~95-99% (includes relay)
+- **See**: [TURN Server Docker Guide](./docs/TURN_SERVER_DOCKER.md)
+
+### Option D: Self-Host Everything (Recommended for Production)
+- **VDO.Ninja**: Your Docker container
+- **TURN**: Your Coturn server
+- **Cost**: ~$20-40/month (medium VPS)
+- **Connection Rate**: ~95-99%
+- **Privacy**: Complete control
+- **See**: [Complete Self-Hosting Guide](./docs/SELF_HOSTING_GUIDE.md)
+
+### Quick Comparison
+
+| Scenario | Cost | Connection Rate | Privacy | Recommended For |
+|----------|------|-----------------|---------|-----------------|
+| Free Services | $0 | 85-92% | Low | Development, Testing |
+| Self-Hosted VDO | $10-20 | 85-92% | Medium | Small Teams |
+| Self-Hosted TURN | $10-30 | 95-99% | Medium | Better Reliability |
+| Self-Hosted Both | $20-40 | 95-99% | High | Production, Enterprise |
+
+### Configuration for Self-Hosted
+
+If you self-host, update your plugin configuration:
+
+```typescript
+// config/plugins.ts
+export default {
+  'video-chat': {
+    enabled: true,
+    config: {
+      vdoNinja: {
+        hostUrl: 'https://vdo.yourdomain.com', // Your VDO.Ninja instance
+        defaultQuality: 2,
+        codec: 'vp9',
+      },
+      turnServer: {
+        enabled: true, // Enable TURN server
+        urls: [
+          'turn:turn.yourdomain.com:3478', // Your TURN server
+          'turns:turn.yourdomain.com:5349'  // TURNS (TLS)
+        ],
+        username: process.env.TURN_USERNAME,
+        credential: process.env.TURN_CREDENTIAL,
+      },
+    },
+  },
+};
+```
+
+**Docker Deployment Guides:**
+- 📘 [VDO.Ninja Docker Setup](./docs/VDO_NINJA_DOCKER.md) - Self-host VDO.Ninja in Docker
+- 📘 [TURN Server Docker Setup](./docs/TURN_SERVER_DOCKER.md) - Deploy Coturn TURN server
+- 📘 [Complete Self-Hosting Guide](./docs/SELF_HOSTING_GUIDE.md) - Deploy everything together
+
 ## Step 4: Build and Start Strapi
 
 ```bash
