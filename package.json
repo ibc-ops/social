@@ -1,0 +1,63 @@
+{
+  "name": "strapi-plugin-video-chat",
+  "version": "1.0.0",
+  "description": "Audio/Video chat plugin for Strapi V5 using VDO.Ninja WebRTC technology",
+  "keywords": [
+    "strapi",
+    "plugin",
+    "video-chat",
+    "audio-chat",
+    "webrtc",
+    "vdo-ninja",
+    "video-call",
+    "strapi-plugin"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/strapi-plugin-video-chat"
+  },
+  "strapi": {
+    "name": "video-chat",
+    "displayName": "Video Chat",
+    "description": "Enable video and audio calls between users using VDO.Ninja",
+    "kind": "plugin"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch",
+    "verify": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^2.0.0",
+    "@strapi/icons": "^2.0.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@strapi/sdk-plugin": "^5.0.0",
+    "@strapi/strapi": "^5.0.0",
+    "@strapi/typescript-utils": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^6.20.0",
+    "styled-components": "^6.1.0",
+    "typescript": "^5.6.0"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
